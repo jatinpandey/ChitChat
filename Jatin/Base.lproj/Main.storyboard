@@ -19,41 +19,49 @@
         <scene sceneID="PI3-nk-PfC">
             <objects>
                 <tableViewController id="XjY-Cd-lKx" customClass="PostsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" id="kP8-Fo-E0k">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="kP8-Fo-E0k">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="76" id="IkA-ve-K2W" customClass="PostTableViewCell">
-                                <rect key="frame" x="0.0" y="92" width="375" height="76"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="105" id="IkA-ve-K2W" customClass="PostTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="375" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IkA-ve-K2W" id="MRC-Mb-Ztp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOu-fT-Rqe">
-                                            <rect key="frame" x="23" y="8" width="280" height="40.5"/>
+                                            <rect key="frame" x="23" y="8" width="306" height="69.5"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.55294117647058827" green="1" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="upvote" translatesAutoresizingMaskIntoConstraints="NO" id="Fip-Jf-bED">
-                                            <rect key="frame" x="342" y="8" width="16" height="16"/>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="downvote" translatesAutoresizingMaskIntoConstraints="NO" id="7ij-Tz-yMp">
-                                            <rect key="frame" x="342" y="51" width="16" height="16"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMR-TB-h4r">
-                                            <rect key="frame" x="329" y="26" width="42" height="21"/>
+                                            <rect key="frame" x="337" y="43" width="34" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <color key="textColor" red="0.55294117649999996" green="1" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG7-O6-MUU">
+                                            <rect key="frame" x="346" y="21" width="16" height="22"/>
+                                            <state key="normal" image="upvote"/>
+                                            <connections>
+                                                <action selector="onUpvote:" destination="XjY-Cd-lKx" eventType="touchUpInside" id="3B4-pm-jRA"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBp-Bc-qth">
+                                            <rect key="frame" x="346" y="61" width="16" height="22"/>
+                                            <state key="normal" image="downvote"/>
+                                            <connections>
+                                                <action selector="onDownvote:" destination="XjY-Cd-lKx" eventType="touchUpInside" id="Tcq-Nh-prh"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.38649999151925396" green="0.28665681550425026" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="UOu-fT-Rqe" secondAttribute="trailing" constant="64" id="EZB-g3-sQn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="UOu-fT-Rqe" secondAttribute="trailing" constant="38" id="EZB-g3-sQn"/>
                                         <constraint firstItem="UOu-fT-Rqe" firstAttribute="centerY" secondItem="MRC-Mb-Ztp" secondAttribute="centerY" constant="-9.5" id="huK-HU-KDC"/>
                                         <constraint firstItem="UOu-fT-Rqe" firstAttribute="leading" secondItem="MRC-Mb-Ztp" secondAttribute="leadingMargin" constant="15" id="lHX-zQ-Pj1"/>
                                         <constraint firstItem="UOu-fT-Rqe" firstAttribute="top" secondItem="MRC-Mb-Ztp" secondAttribute="topMargin" id="p9s-MZ-HNM"/>
@@ -62,6 +70,9 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="bodyContent" destination="UOu-fT-Rqe" id="dwU-CQ-tIF"/>
+                                    <outlet property="downvoteButton" destination="XBp-Bc-qth" id="5jf-n6-9Lk"/>
+                                    <outlet property="upvoteButton" destination="FG7-O6-MUU" id="RTy-2U-D7p"/>
+                                    <outlet property="voteCountLabel" destination="HMR-TB-h4r" id="cPd-BK-W1V"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -79,6 +90,9 @@
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <segue destination="agH-3A-Rap" kind="push" identifier="detailSegue" id="ahF-uy-iiJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQv-Js-W85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -100,23 +114,29 @@
                                 <rect key="frame" x="0.0" y="437" width="375" height="230"/>
                             </pickerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="iaC-wJ-cmm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="324"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="255"/>
                                 <color key="backgroundColor" red="0.65023993453455076" green="0.9278724747474747" blue="0.74607217756922373" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dVp-yT-GbS">
-                                <rect key="frame" x="122" y="396" width="248" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vka-cj-Upl">
-                                <rect key="frame" x="0.0" y="388" width="114" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHV-bM-LWj">
+                                <rect key="frame" x="313" y="327" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vka-cj-Upl">
+                                <rect key="frame" x="2" y="356" width="114" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipient group name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dVp-yT-GbS">
+                                <rect key="frame" x="124" y="364" width="248" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.70307273238120782" green="1" blue="0.80463956016764682" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -137,13 +157,16 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="characterCountLabel" destination="iHV-bM-LWj" id="DZ8-UY-6bQ"/>
                         <outlet property="groupPicker" destination="kd7-WE-pwJ" id="WHK-eo-sYF"/>
                         <outlet property="messageTextView" destination="iaC-wJ-cmm" id="RrE-V9-MMV"/>
+                        <outlet property="sendButton" destination="CJ8-B9-yrL" id="2oH-cZ-S9I"/>
+                        <outlet property="toGroupField" destination="dVp-yT-GbS" id="pU3-hj-R2A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4k7-5C-LTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298.5" y="334.5"/>
+            <point key="canvasLocation" x="1307.5" y="64.5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -228,7 +251,48 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBC-ti-6hW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767" y="335"/>
+            <point key="canvasLocation" x="846.5" y="64.5"/>
+        </scene>
+        <!--Post Detail View Controller-->
+        <scene sceneID="gTj-xV-Ztp">
+            <objects>
+                <viewController id="agH-3A-Rap" customClass="PostDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9DZ-kw-y82"/>
+                        <viewControllerLayoutGuide type="bottom" id="hVY-Vd-of9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uDq-b1-ae1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAj-dO-a2O">
+                                <rect key="frame" x="131" y="319" width="113" height="30"/>
+                                <state key="normal" title="Share on Twitter">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTweetTap:" destination="agH-3A-Rap" eventType="touchUpInside" id="MxD-hs-ZGu"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="If this is not replaced your transition didn't work from old VC. Fix!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zz-La-7LI">
+                                <rect key="frame" x="29" y="72" width="317" height="238"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CGL-JJ-VVT"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="bodyContent" destination="9Zz-La-7LI" id="o1c-KV-b0w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XUX-tj-lq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="846.5" y="821.5"/>
         </scene>
     </scenes>
     <resources>

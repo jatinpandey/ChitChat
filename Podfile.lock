@@ -2,12 +2,15 @@ PODS:
   - Bolts/Tasks (1.3.0)
   - Parse (1.8.5):
     - Bolts/Tasks (>= 1.2.2)
+  - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - Parse
+  - SVPullToRefresh
 
 SPEC CHECKSUMS:
   Bolts: 805a4a87413e49d4a0c2b7d469084cbc46b09342
   Parse: 17ad8e0677ed682f7f00503860fcda0f4eb74168
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
 COCOAPODS: 0.38.2

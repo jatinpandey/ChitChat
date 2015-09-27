@@ -8,7 +8,9 @@
 
 #import "PostsTableViewController.h"
 #import "PostTableViewCell.h"
+#import "PostDetailViewController.h"
 #import <Parse/Parse.h>
+#import <SVPullToRefresh/SVPullToRefresh.h>
 
 @interface PostsTableViewController ()
 
@@ -23,8 +25,12 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:141.0/255.0 green:1 blue:185.0/255.0 alpha:1.0];
     
-    
+    [self getAllMessages];
+}
+
+- (void) getAllMessages {
     PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
+    [getRecordsForClass orderByDescending:@"createdAt"];
     [getRecordsForClass findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         NSMutableArray *messages = [[NSMutableArray alloc] init];
         for (PFObject *messageObj in objects) {
@@ -33,6 +39,7 @@
         self.postsArray = [NSArray arrayWithArray:messages];
         [self.tableView reloadData];
     }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +52,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%ld", [self.postsArray count]);
+//    NSLog(@"%ld", [self.postsArray count]); This is called many times, why?
     return [self.postsArray count];
 }
 
@@ -53,8 +60,32 @@
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
 
     cell.bodyContent.text = self.postsArray[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
+
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PostTableViewCell *cell = (PostTableViewCell *) [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:@"detailSegue" sender:cell];
+}
+
+- (void) getRowForButton:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    NSLog(@"%ld", indexPath.row);
+}
+
+- (IBAction)onUpvote:(id)sender {
+    
+}
+
+- (IBAction)onDownvote:(id)sender {
+}
+
 
 /*
 // Override to support editing the table view.
@@ -72,6 +103,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual: @"detailSegue"]) {
+        PostDetailViewController *detailVC = [segue destinationViewController];
+        PostTableViewCell *cell = (PostTableViewCell *)sender;
+        detailVC.messageText = cell.bodyContent.text;
+    }
 }
 
 @end

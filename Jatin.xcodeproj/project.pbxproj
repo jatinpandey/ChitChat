@@ -24,6 +24,7 @@
 		8F7BE39F1BB7504200E35525 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7BE39D1BB7504200E35525 /* AddressBook.framework */; };
 		8F7BE3A01BB7504200E35525 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7BE39E1BB7504200E35525 /* AddressBookUI.framework */; };
 		8F7BE3A21BB775BE00E35525 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F7BE3A11BB775BE00E35525 /* keys.plist */; };
+		8F7BE3A51BB796C200E35525 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7BE3A41BB796C200E35525 /* PostDetailViewController.m */; };
 		95FCD50D5CE76AFB1E456B14 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 977B3258A4C9010CFD92B683 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		8F7BE39D1BB7504200E35525 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		8F7BE39E1BB7504200E35525 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		8F7BE3A11BB775BE00E35525 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		8F7BE3A31BB796C200E35525 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
+		8F7BE3A41BB796C200E35525 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		977B3258A4C9010CFD92B683 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7EB95541E003872D966430B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5B2B0FE6086B8975D14C0BE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,10 +162,12 @@
 			children = (
 				8F7BE3791BB3CC2800E35525 /* HomeViewController.h */,
 				8F7BE37A1BB3CC2800E35525 /* HomeViewController.m */,
-				8F7BE38D1BB5114400E35525 /* PostsTableViewController.h */,
-				8F7BE38E1BB5114400E35525 /* PostsTableViewController.m */,
 				8F7BE3931BB527DF00E35525 /* ComposeViewController.h */,
 				8F7BE3941BB527DF00E35525 /* ComposeViewController.m */,
+				8F7BE38D1BB5114400E35525 /* PostsTableViewController.h */,
+				8F7BE38E1BB5114400E35525 /* PostsTableViewController.m */,
+				8F7BE3A31BB796C200E35525 /* PostDetailViewController.h */,
+				8F7BE3A41BB796C200E35525 /* PostDetailViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				8F7BE3621BB3C51900E35525 /* main.m in Sources */,
 				8F7BE3951BB527DF00E35525 /* ComposeViewController.m in Sources */,
 				8F7BE37B1BB3CC2800E35525 /* HomeViewController.m in Sources */,
+				8F7BE3A51BB796C200E35525 /* PostDetailViewController.m in Sources */,
 				8F7BE3921BB512BA00E35525 /* PostTableViewCell.m in Sources */,
 				8F7BE3981BB5EE7000E35525 /* Post.m in Sources */,
 			);
