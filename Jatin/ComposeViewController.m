@@ -114,7 +114,6 @@ NSString *placeHolderText = @"What's on your mind?";
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    NSLog(@"began editing");
     if (textView.textColor == [UIColor lightGrayColor]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor];

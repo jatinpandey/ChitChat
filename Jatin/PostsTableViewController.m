@@ -24,8 +24,10 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:141.0/255.0 green:1 blue:185.0/255.0 alpha:1.0];
-    
+    self.tableView.separatorColor = [UIColor whiteColor];
     [self getAllMessages];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void) getAllMessages {
@@ -39,7 +41,13 @@
         self.postsArray = [NSArray arrayWithArray:messages];
         [self.tableView reloadData];
     }];
+}
 
+- (void) refreshPosts {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self getAllMessages];
+        [self.refreshControl endRefreshing];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,8 +70,8 @@
     cell.bodyContent.text = self.postsArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
+//    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
 
     return cell;
 }
