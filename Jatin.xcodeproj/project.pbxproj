@@ -25,6 +25,7 @@
 		8F7BE3A01BB7504200E35525 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7BE39E1BB7504200E35525 /* AddressBookUI.framework */; };
 		8F7BE3A21BB775BE00E35525 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F7BE3A11BB775BE00E35525 /* keys.plist */; };
 		8F7BE3A51BB796C200E35525 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7BE3A41BB796C200E35525 /* PostDetailViewController.m */; };
+		8FEA1FCD1BB8CF2200A581AF /* GroupSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FEA1FCC1BB8CF2200A581AF /* GroupSelectViewController.m */; };
 		95FCD50D5CE76AFB1E456B14 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 977B3258A4C9010CFD92B683 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		8F7BE3A11BB775BE00E35525 /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
 		8F7BE3A31BB796C200E35525 /* PostDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		8F7BE3A41BB796C200E35525 /* PostDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
+		8FEA1FCB1BB8CF2200A581AF /* GroupSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupSelectViewController.h; sourceTree = "<group>"; };
+		8FEA1FCC1BB8CF2200A581AF /* GroupSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupSelectViewController.m; sourceTree = "<group>"; };
 		977B3258A4C9010CFD92B683 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7EB95541E003872D966430B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B5B2B0FE6086B8975D14C0BE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				8F7BE38E1BB5114400E35525 /* PostsTableViewController.m */,
 				8F7BE3A31BB796C200E35525 /* PostDetailViewController.h */,
 				8F7BE3A41BB796C200E35525 /* PostDetailViewController.m */,
+				8FEA1FCB1BB8CF2200A581AF /* GroupSelectViewController.h */,
+				8FEA1FCC1BB8CF2200A581AF /* GroupSelectViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 			files = (
 				8F7BE3651BB3C51900E35525 /* AppDelegate.m in Sources */,
 				8F7BE38F1BB5114400E35525 /* PostsTableViewController.m in Sources */,
+				8FEA1FCD1BB8CF2200A581AF /* GroupSelectViewController.m in Sources */,
 				8F7BE3621BB3C51900E35525 /* main.m in Sources */,
 				8F7BE3951BB527DF00E35525 /* ComposeViewController.m in Sources */,
 				8F7BE37B1BB3CC2800E35525 /* HomeViewController.m in Sources */,

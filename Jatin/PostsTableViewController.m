@@ -14,6 +14,8 @@
 
 @interface PostsTableViewController ()
 
+@property NSString *groupName;
+
 @end
 
 @implementation PostsTableViewController
@@ -21,19 +23,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor colorWithRed:99.0/255.0 green:73.0/255.0 blue:1 alpha:1.0]}];
+
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:141.0/255.0 green:1 blue:185.0/255.0 alpha:1.0];
     self.tableView.separatorColor = [UIColor whiteColor];
 
-    [self getAllMessages];
+//    [self getAllMessagesForGroup:self.groupName];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
+    
+    if (self.groupName == nil) {
+        self.groupName = @"Global";
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self getAllMessages];
-    [self.tableView reloadData];
+    [self getAllMessagesForGroup:self.groupName];
+    // Do I need this? Maybe extra network request
 }
 
+/*
 - (void) getAllMessages {
     PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
     [getRecordsForClass orderByDescending:@"createdAt"];
@@ -46,10 +57,28 @@
         [self.tableView reloadData];
     }];
 }
+*/
+
+- (void) getAllMessagesForGroup:(NSString *)groupName {
+    PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
+    [getRecordsForClass orderByDescending:@"createdAt"];
+    if (groupName != nil) {
+        [getRecordsForClass whereKey:@"toGroupName" equalTo:groupName];
+    }
+    [getRecordsForClass findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+
+        self.postsArray = [[NSMutableArray alloc] init];
+        for (PFObject *postObj in objects) {
+            [self.postsArray addObject:[Post postWithObject:postObj]];
+        }
+        [self.tableView reloadData];
+    }];
+}
+
 
 - (void) refreshPosts {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self getAllMessages];
+        [self getAllMessagesForGroup:self.groupName];
         [self.refreshControl endRefreshing];
     });
 }

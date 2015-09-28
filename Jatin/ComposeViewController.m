@@ -29,6 +29,7 @@ NSString *placeHolderText = @"What's on your mind?";
     self.groupPicker.delegate = self;
     self.messageTextView.delegate = self;
     
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:141.0/255.0 green:1 blue:185.0/255.0 alpha:1.0];
     [self.navigationController.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[UIColor colorWithRed:99.0/255.0 green:73.0/255.0 blue:1 alpha:1.0]}];
     

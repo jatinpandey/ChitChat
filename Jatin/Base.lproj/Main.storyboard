@@ -82,7 +82,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Posts" id="ZuD-RB-kGd">
+                        <barButtonItem key="leftBarButtonItem" image="navmenu" id="eNO-nO-onB">
+                            <color key="tintColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="9cm-yi-jZf" kind="modal" id="heO-Wb-72d"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="HGl-pQ-xij">
+                            <color key="tintColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="3ku-fy-FNg" kind="modal" id="i1r-Zg-Yx1"/>
                             </connections>
@@ -97,6 +104,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQv-Js-W85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="265.5" y="334.5"/>
+        </scene>
+        <!--Group info-->
+        <scene sceneID="Ohn-Up-DrG">
+            <objects>
+                <viewController id="Ogb-ID-SA6" customClass="GroupSelectViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jzn-S3-ltU"/>
+                        <viewControllerLayoutGuide type="bottom" id="m4R-h0-2vl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HbJ-Wi-CTP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqr-ot-hx1">
+                                <rect key="frame" x="57" y="121" width="99" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.55294117649999996" green="1" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wte-GU-Ptr">
+                                <rect key="frame" x="57" y="183" width="79" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.55294117649999996" green="1" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wuN-So-PB5">
+                                <rect key="frame" x="185" y="117" width="162" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjF-cu-YFT">
+                                <rect key="frame" x="185" y="183" width="162" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgy-ER-JUU">
+                                <rect key="frame" x="89" y="290" width="199" height="52"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="See latest posts">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onEnterButton:" destination="Ogb-ID-SA6" eventType="touchUpInside" id="ftr-gg-7lj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Group info" id="XHG-z2-0cj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="81z-8p-x8F">
+                            <color key="tintColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="onCancelButton:" destination="Ogb-ID-SA6" id="ph1-FB-i6B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="enterButton" destination="Fgy-ER-JUU" id="EDW-jN-Hzz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zmJ-Of-M0s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1453.5" y="383.5"/>
         </scene>
         <!--Compose-->
         <scene sceneID="Ipg-1C-9EX">
@@ -166,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4k7-5C-LTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1307.5" y="64.5"/>
+            <point key="canvasLocation" x="1313.5" y="-563.5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -211,7 +283,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1822" y="356"/>
+            <point key="canvasLocation" x="2353.5" y="355.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dl9-Ms-lt5">
@@ -251,7 +323,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eBC-ti-6hW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846.5" y="64.5"/>
+            <point key="canvasLocation" x="852.5" y="-563.5"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="gTj-xV-Ztp">
@@ -292,11 +364,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XUX-tj-lq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846.5" y="821.5"/>
+            <point key="canvasLocation" x="864.5" y="1279.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DU8-DW-Tkr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9cm-yi-jZf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hG5-0l-oBF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ogb-ID-SA6" kind="relationship" relationship="rootViewController" id="S3T-BC-oJE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hBB-SE-OW2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="922" y="334"/>
         </scene>
     </scenes>
     <resources>
         <image name="downvote" width="16" height="16"/>
+        <image name="navmenu" width="32" height="32"/>
         <image name="upvote" width="16" height="16"/>
     </resources>
 </document>
