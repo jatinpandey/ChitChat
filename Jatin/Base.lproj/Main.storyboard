@@ -38,24 +38,24 @@
                                             <color key="textColor" red="0.55294117647058827" green="1" blue="0.72549019607843135" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMR-TB-h4r">
-                                            <rect key="frame" x="337" y="43" width="34" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HMR-TB-h4r">
+                                            <rect key="frame" x="330" y="43" width="41" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <color key="textColor" red="0.55294117649999996" green="1" blue="0.72549019609999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG7-O6-MUU">
-                                            <rect key="frame" x="346" y="21" width="16" height="22"/>
-                                            <state key="normal" image="upvote"/>
-                                            <connections>
-                                                <action selector="onUpvote:" destination="XjY-Cd-lKx" eventType="touchUpInside" id="3B4-pm-jRA"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBp-Bc-qth">
-                                            <rect key="frame" x="346" y="61" width="16" height="22"/>
+                                            <rect key="frame" x="333" y="57" width="34" height="34"/>
                                             <state key="normal" image="downvote"/>
                                             <connections>
                                                 <action selector="onDownvote:" destination="XjY-Cd-lKx" eventType="touchUpInside" id="Tcq-Nh-prh"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FG7-O6-MUU">
+                                            <rect key="frame" x="333" y="15" width="34" height="34"/>
+                                            <state key="normal" image="upvote"/>
+                                            <connections>
+                                                <action selector="onUpvote:" destination="XjY-Cd-lKx" eventType="touchUpInside" id="3B4-pm-jRA"/>
                                             </connections>
                                         </button>
                                     </subviews>

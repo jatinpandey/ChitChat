@@ -10,4 +10,6 @@
 
 @interface PostsTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSMutableArray *postsArray;
+
 @end

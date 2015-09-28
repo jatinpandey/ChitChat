@@ -1,3 +1,2 @@
 pod 'Parse'
-pod 'SVPullToRefresh'
 

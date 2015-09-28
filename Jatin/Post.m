@@ -10,4 +10,22 @@
 
 @implementation Post
 
+- (instancetype) initPostFromObject:(PFObject *)postObject {
+    self = [super init];
+    if (self) {
+        self.objectId = [postObject objectId];
+        self.bodyContent = postObject[@"bodyContent"];
+        self.voteCount = postObject[@"voteCount"];
+        self.groupName = postObject[@"groupName"];
+        self.createdAt = [postObject createdAt];
+        self.updatedAt = [postObject updatedAt];
+    }
+    return self;
+}
+
++ (instancetype) postWithObject:(PFObject *)postObject {
+    return [[Post alloc] initPostFromObject:postObject];
+}
+
+
 @end

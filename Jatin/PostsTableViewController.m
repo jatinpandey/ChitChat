@@ -7,14 +7,12 @@
 //
 
 #import "PostsTableViewController.h"
+#import "Post.h"
 #import "PostTableViewCell.h"
 #import "PostDetailViewController.h"
 #import <Parse/Parse.h>
-#import <SVPullToRefresh/SVPullToRefresh.h>
 
 @interface PostsTableViewController ()
-
-@property (strong, nonatomic) NSArray *postsArray;
 
 @end
 
@@ -25,20 +23,26 @@
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:141.0/255.0 green:1 blue:185.0/255.0 alpha:1.0];
     self.tableView.separatorColor = [UIColor whiteColor];
+
     [self getAllMessages];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self getAllMessages];
+    [self.tableView reloadData];
 }
 
 - (void) getAllMessages {
     PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
     [getRecordsForClass orderByDescending:@"createdAt"];
     [getRecordsForClass findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        NSMutableArray *messages = [[NSMutableArray alloc] init];
-        for (PFObject *messageObj in objects) {
-            [messages addObject:(messageObj[@"bodyContent"])];
+
+        self.postsArray = [[NSMutableArray alloc] init];
+        for (PFObject *postObj in objects) {
+            [self.postsArray addObject:[Post postWithObject:postObj]];
         }
-        self.postsArray = [NSArray arrayWithArray:messages];
         [self.tableView reloadData];
     }];
 }
@@ -67,11 +71,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
 
-    cell.bodyContent.text = self.postsArray[indexPath.row];
+    Post *postForCell = ((Post *)self.postsArray[indexPath.row]);
+    cell.bodyContent.text = postForCell.bodyContent;
+    cell.voteCountLabel.text = [NSString stringWithFormat:@"%@", postForCell.voteCount];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-//    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [cell.upvoteButton addTarget:self action:@selector(getRowForButton:) forControlEvents:UIControlEventTouchUpInside];
 
     return cell;
 }
@@ -81,31 +84,63 @@
     [self performSegueWithIdentifier:@"detailSegue" sender:cell];
 }
 
-- (void) getRowForButton:(id)sender {
+- (NSIndexPath *) getIndexPathForButton:(id)sender {
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    NSLog(@"%ld", indexPath.row);
+    return indexPath;
 }
 
 - (IBAction)onUpvote:(id)sender {
-    
+    NSLog(@"Thanks for upvote!");
+
+    PFQuery *voteUpdateQuery = [PFQuery queryWithClassName:@"Message"];
+    NSIndexPath *indexPath = [self getIndexPathForButton:sender];
+    NSInteger row = indexPath.row;
+    Post *postForRow = ((Post *)self.postsArray[row]);
+    NSString *objectId = postForRow.objectId;
+
+    [voteUpdateQuery getObjectInBackgroundWithId:objectId block:^(PFObject * _Nullable post, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error storing upvote, sorry OP: %@", error.description);
+        } else {
+            [post incrementKey:@"voteCount"];
+            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    Post *currentPost = self.postsArray[row] = [Post postWithObject:post];
+                    PostTableViewCell *cell = (PostTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+                    cell.voteCountLabel.text = [NSString stringWithFormat:@"%d", [currentPost.voteCount intValue]];
+                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                }
+            }];
+        }
+    }];
 }
 
 - (IBAction)onDownvote:(id)sender {
-}
+    NSLog(@"Come on dude");
 
+    PFQuery *voteUpdateQuery = [PFQuery queryWithClassName:@"Message"];
+    NSIndexPath *indexPath = [self getIndexPathForButton:sender];
+    NSInteger row = indexPath.row;
+    Post *postForRow = ((Post *)self.postsArray[row]);
+    NSString *objectId = postForRow.objectId;
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    [voteUpdateQuery getObjectInBackgroundWithId:objectId block:^(PFObject * _Nullable post, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error storing upvote, lucky you OP: %@", error.description);
+        } else {
+            [post incrementKey:@"voteCount" byAmount:@-1];
+            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    Post *currentPost = self.postsArray[row] = [Post postWithObject:post];
+                    PostTableViewCell *cell = (PostTableViewCell *)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+                    cell.voteCountLabel.text = [NSString stringWithFormat:@"%d", [currentPost.voteCount intValue]];
+                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                }
+            }];
+        }
+    }];
 }
-*/
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

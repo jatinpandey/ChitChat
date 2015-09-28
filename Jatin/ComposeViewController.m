@@ -41,12 +41,9 @@ NSString *placeHolderText = @"What's on your mind?";
     PFQuery *getAllGroups = [PFQuery queryWithClassName:@"Group"];
     [getAllGroups findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error) {
-            NSLog(@"Fuckk this errored out! Error code: %@", error.localizedDescription);
+            NSLog(@"Fuckk this errored out! Error: %@", error.description);
         }
         else {
-            NSLog(@"Successfully retrieved %ld groups", objects.count);
-            // Assign the retrieved deserialized list to self.groupsArray
-            //self.groupsArray = [NSArray arrayWithObjects:@"Yahooligans", @"Family", @"College", @"Cruisamel", @"Tahoe", nil];
             NSMutableArray *allGroups = [[NSMutableArray alloc] init];
             for (PFObject *groupObject in objects) {
                 [allGroups addObject:groupObject[@"groupName"]];
@@ -79,8 +76,7 @@ NSString *placeHolderText = @"What's on your mind?";
         newMessage[@"bodyContent"] = self.messageTextView.text;
         newMessage[@"toGroupName"] = self.toGroupField.text;
         newMessage[@"voteCount"] = @1;
-        
-//        newMessage[@"toGroupId"] = @([self.groupPicker selectedRowInComponent:0] + 1);   // Change this to get groupID from DB where name matches
+
         [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (!error) {
                 NSLog(@"Received ;)");
@@ -88,7 +84,6 @@ NSString *placeHolderText = @"What's on your mind?";
                 NSLog(@"Whoops error submitting post!");
             }
         }];
-        
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

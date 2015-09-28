@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *voteCountLabel;
 @property (strong, nonatomic) IBOutlet UIButton *upvoteButton;
 @property (strong, nonatomic) IBOutlet UIButton *downvoteButton;
+@property (strong, nonatomic) NSString *objectId;
 
 @end
