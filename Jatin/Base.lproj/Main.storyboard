@@ -15,7 +15,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Posts-->
+        <!--Posts Table View Controller-->
         <scene sceneID="PI3-nk-PfC">
             <objects>
                 <tableViewController id="XjY-Cd-lKx" customClass="PostsTableViewController" sceneMemberID="viewController">
@@ -81,13 +81,25 @@
                             <outlet property="delegate" destination="XjY-Cd-lKx" id="0Xc-IV-W8h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Posts" id="ZuD-RB-kGd">
+                    <navigationItem key="navigationItem" id="ZuD-RB-kGd">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="navmenu" id="eNO-nO-onB">
                             <color key="tintColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="9cm-yi-jZf" kind="modal" identifier="groupSelectSegue" id="heO-Wb-72d"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tUF-96-Qyo">
+                            <rect key="frame" x="112.5" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="New"/>
+                                <segment title="Hot"/>
+                            </segments>
+                            <connections>
+                                <action selector="onChangeNewHotControl:" destination="XjY-Cd-lKx" eventType="valueChanged" id="2cC-8J-8Vo"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="HGl-pQ-xij">
                             <color key="tintColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -98,6 +110,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="sortingControl" destination="tUF-96-Qyo" id="z4Y-EQ-NkT"/>
                         <segue destination="agH-3A-Rap" kind="push" identifier="detailSegue" id="ahF-uy-iiJ"/>
                     </connections>
                 </tableViewController>

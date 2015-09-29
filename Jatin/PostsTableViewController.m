@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSString *groupName;
 @property (strong, nonatomic) GroupSelectViewController *gsvc;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *sortingControl;
 
 @end
 
@@ -61,9 +62,29 @@
     }];
 }
 
+- (void) getAllHotMessagesForGroup:(NSString *)groupName {
+    PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
+    [getRecordsForClass orderByDescending:@"voteCount"];
+    if (groupName != nil) {
+        [getRecordsForClass whereKey:@"toGroupName" equalTo:groupName];
+    }
+    [getRecordsForClass findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        
+        self.postsArray = [[NSMutableArray alloc] init];
+        for (PFObject *postObj in objects) {
+            [self.postsArray addObject:[Post postWithObject:postObj]];
+        }
+        [self.tableView reloadData];
+    }];
+}
+
 - (void) refreshPosts {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self getAllMessagesForGroup:self.groupName];
+        if (self.sortingControl.selectedSegmentIndex == 0) {
+            [self getAllMessagesForGroup:self.groupName];
+        } else if (self.sortingControl.selectedSegmentIndex == 1) {
+            [self getAllHotMessagesForGroup:self.groupName];
+        }
         [self.refreshControl endRefreshing];
     });
 }
@@ -105,8 +126,6 @@
 }
 
 - (IBAction)onUpvote:(id)sender {
-    NSLog(@"Thanks for upvote!");
-
     PFQuery *voteUpdateQuery = [PFQuery queryWithClassName:@"Message"];
     NSIndexPath *indexPath = [self getIndexPathForButton:sender];
     NSInteger row = indexPath.row;
@@ -131,8 +150,6 @@
 }
 
 - (IBAction)onDownvote:(id)sender {
-    NSLog(@"Come on dude");
-
     PFQuery *voteUpdateQuery = [PFQuery queryWithClassName:@"Message"];
     NSIndexPath *indexPath = [self getIndexPathForButton:sender];
     NSInteger row = indexPath.row;
@@ -154,6 +171,15 @@
             }];
         }
     }];
+}
+
+- (IBAction)onChangeNewHotControl:(UISegmentedControl *)sender {
+    NSInteger selectedSegment = sender.selectedSegmentIndex;
+    if (selectedSegment == 0) {
+        [self getAllMessagesForGroup:self.groupName];
+    } else if (selectedSegment == 1) {
+        [self getAllHotMessagesForGroup:self.groupName];
+    }
 }
 
 - (void)didDismissWithGroup:(NSString *)groupName withPassword:(NSString *)password {
