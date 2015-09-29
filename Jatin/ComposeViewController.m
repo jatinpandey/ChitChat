@@ -67,7 +67,7 @@ NSString *placeHolderText = @"What's on your mind?";
     if ([self.messageTextView.text length] == 0 || self.messageTextView.textColor == [UIColor lightGrayColor]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invalid message" message:@"Do not leave message body empty" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSLog(@"Why is this callback needed lolol");
+
         }];
         [alertController addAction:okAction];
         [self presentViewController:alertController animated:YES completion:^{
@@ -79,11 +79,7 @@ NSString *placeHolderText = @"What's on your mind?";
         newMessage[@"voteCount"] = @1;
 
         [newMessage saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (!error) {
-                NSLog(@"Received ;)");
-            } else {
-                NSLog(@"Whoops error submitting post!");
-            }
+
         }];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -141,15 +137,5 @@ NSString *placeHolderText = @"What's on your mind?";
         }
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
