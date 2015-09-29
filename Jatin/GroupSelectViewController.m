@@ -11,6 +11,9 @@
 
 @interface GroupSelectViewController ()
 
+
+@property (strong, nonatomic) IBOutlet UITextField *groupNameField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UIButton *enterButton;
 
 @end
@@ -40,21 +43,16 @@
 }
 
 - (IBAction)onEnterButton:(id)sender {
-    
+    id<GroupSelectDelegate> delegate = self.delegate;
+    NSString *groupName = self.groupNameField.text;
+    NSString *password = self.passwordField.text;
+
+    [delegate didDismissWithGroup:(NSString *)groupName withPassword:(NSString *)password];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

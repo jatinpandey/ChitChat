@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GroupSelectViewController.h"
 
-@interface PostsTableViewController : UITableViewController
+@interface PostsTableViewController : UITableViewController <GroupSelectDelegate>
 
 @property (strong, nonatomic) NSMutableArray *postsArray;
 

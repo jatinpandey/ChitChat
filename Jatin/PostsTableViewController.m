@@ -10,11 +10,13 @@
 #import "Post.h"
 #import "PostTableViewCell.h"
 #import "PostDetailViewController.h"
+#import "GroupSelectViewController.h"
 #import <Parse/Parse.h>
 
 @interface PostsTableViewController ()
 
-@property NSString *groupName;
+@property (strong, nonatomic) NSString *groupName;
+@property (strong, nonatomic) GroupSelectViewController *gsvc;
 
 @end
 
@@ -29,35 +31,19 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:141.0/255.0 green:1 blue:185.0/255.0 alpha:1.0];
     self.tableView.separatorColor = [UIColor whiteColor];
 
-//    [self getAllMessagesForGroup:self.groupName];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
     
     if (self.groupName == nil) {
         self.groupName = @"Global";
     }
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self getAllMessagesForGroup:self.groupName];
     // Do I need this? Maybe extra network request
 }
-
-/*
-- (void) getAllMessages {
-    PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
-    [getRecordsForClass orderByDescending:@"createdAt"];
-    [getRecordsForClass findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-
-        self.postsArray = [[NSMutableArray alloc] init];
-        for (PFObject *postObj in objects) {
-            [self.postsArray addObject:[Post postWithObject:postObj]];
-        }
-        [self.tableView reloadData];
-    }];
-}
-*/
 
 - (void) getAllMessagesForGroup:(NSString *)groupName {
     PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
@@ -74,7 +60,6 @@
         [self.tableView reloadData];
     }];
 }
-
 
 - (void) refreshPosts {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -171,6 +156,10 @@
     }];
 }
 
+- (void)didDismissWithGroup:(NSString *)groupName withPassword:(NSString *)password {
+    self.groupName = groupName;
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -179,6 +168,12 @@
         PostDetailViewController *detailVC = [segue destinationViewController];
         PostTableViewCell *cell = (PostTableViewCell *)sender;
         detailVC.messageText = cell.bodyContent.text;
+    } else if ([segue.identifier isEqual: @"groupSelectSegue"]) {
+        if ([segue.destinationViewController
+             isKindOfClass:[UINavigationController class]]) {
+            self.gsvc = (GroupSelectViewController *)[segue.destinationViewController topViewController];
+            self.gsvc.delegate = self;
+        }
     }
 }
 

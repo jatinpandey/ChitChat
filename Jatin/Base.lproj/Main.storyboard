@@ -85,7 +85,7 @@
                         <barButtonItem key="leftBarButtonItem" image="navmenu" id="eNO-nO-onB">
                             <color key="tintColor" red="0.38649999149999997" green="0.2866568155" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="9cm-yi-jZf" kind="modal" id="heO-Wb-72d"/>
+                                <segue destination="9cm-yi-jZf" kind="modal" identifier="groupSelectSegue" id="heO-Wb-72d"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="HGl-pQ-xij">
@@ -137,7 +137,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjF-cu-YFT">
                                 <rect key="frame" x="185" y="183" width="162" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fgy-ER-JUU">
                                 <rect key="frame" x="89" y="290" width="199" height="52"/>
@@ -164,6 +164,8 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="enterButton" destination="Fgy-ER-JUU" id="EDW-jN-Hzz"/>
+                        <outlet property="groupNameField" destination="wuN-So-PB5" id="fh1-ro-yFI"/>
+                        <outlet property="passwordField" destination="gjF-cu-YFT" id="Shd-in-04c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zmJ-Of-M0s" userLabel="First Responder" sceneMemberID="firstResponder"/>

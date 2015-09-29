@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GroupSelectDelegate <NSObject>
+
+- (void) didDismissWithGroup:(NSString *)groupName withPassword:(NSString *)password;
+
+@end
+
 @interface GroupSelectViewController : UIViewController
+
+@property (nonatomic, weak) id<GroupSelectDelegate> delegate;
 
 @end
