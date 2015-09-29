@@ -42,11 +42,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self getAllMessagesForGroup:self.groupName];
+    [self getMessagesBySortingControl];
     // Do I need this? Maybe extra network request
 }
 
-- (void) getAllMessagesForGroup:(NSString *)groupName {
+- (void) getAllNewMessagesForGroup:(NSString *)groupName {
     PFQuery *getRecordsForClass = [PFQuery queryWithClassName:@"Message"];
     [getRecordsForClass orderByDescending:@"createdAt"];
     if (groupName != nil) {
@@ -78,13 +78,17 @@
     }];
 }
 
+- (void)getMessagesBySortingControl {
+    if (self.sortingControl.selectedSegmentIndex == 0) {
+        [self getAllNewMessagesForGroup:self.groupName];
+    } else if (self.sortingControl.selectedSegmentIndex == 1) {
+        [self getAllHotMessagesForGroup:self.groupName];
+    }
+}
+
 - (void) refreshPosts {
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (self.sortingControl.selectedSegmentIndex == 0) {
-            [self getAllMessagesForGroup:self.groupName];
-        } else if (self.sortingControl.selectedSegmentIndex == 1) {
-            [self getAllHotMessagesForGroup:self.groupName];
-        }
+        [self getMessagesBySortingControl];
         [self.refreshControl endRefreshing];
     });
 }
@@ -174,12 +178,7 @@
 }
 
 - (IBAction)onChangeNewHotControl:(UISegmentedControl *)sender {
-    NSInteger selectedSegment = sender.selectedSegmentIndex;
-    if (selectedSegment == 0) {
-        [self getAllMessagesForGroup:self.groupName];
-    } else if (selectedSegment == 1) {
-        [self getAllHotMessagesForGroup:self.groupName];
-    }
+    [self getMessagesBySortingControl];
 }
 
 - (void)didDismissWithGroup:(NSString *)groupName withPassword:(NSString *)password {

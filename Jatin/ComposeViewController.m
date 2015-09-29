@@ -18,6 +18,7 @@
 
 @end
 
+NSInteger MAX_MESSAGE_LENGTH = 140;
 NSString *placeHolderText = @"What's on your mind?";
 
 @implementation ComposeViewController
@@ -54,7 +55,7 @@ NSString *placeHolderText = @"What's on your mind?";
         }
     }];
     
-    self.characterCountLabel.text = @"200";
+    self.characterCountLabel.text = [NSString stringWithFormat:@"%ld", MAX_MESSAGE_LENGTH];
     self.sendButton.enabled = NO;
 }
 
@@ -109,7 +110,7 @@ NSString *placeHolderText = @"What's on your mind?";
     if (textView.textColor == [UIColor lightGrayColor]) {
         textView.text = @"";
         textView.textColor = [UIColor blackColor];
-        self.characterCountLabel.text = @"200";
+        self.characterCountLabel.text = [NSString stringWithFormat:@"%ld", MAX_MESSAGE_LENGTH];
         self.sendButton.enabled = NO;
     }
 }
@@ -123,12 +124,12 @@ NSString *placeHolderText = @"What's on your mind?";
 
 - (void)textViewDidChange:(UITextView *)textView {
     if (textView.textColor == [UIColor lightGrayColor] || [textView.text length] == 0) {
-        self.characterCountLabel.text = @"200";
+        self.characterCountLabel.text = [NSString stringWithFormat:@"%ld", MAX_MESSAGE_LENGTH];
         self.sendButton.enabled = NO;
     } else {
         NSInteger currentLength = [self.messageTextView.text length];
-        self.characterCountLabel.text = [NSString stringWithFormat:@"%ld", (200 - currentLength)];
-        if (currentLength > 200) {
+        self.characterCountLabel.text = [NSString stringWithFormat:@"%ld", (MAX_MESSAGE_LENGTH - currentLength)];
+        if (currentLength > MAX_MESSAGE_LENGTH) {
             self.characterCountLabel.textColor = [UIColor redColor];
             self.sendButton.enabled = NO;
         } else {
