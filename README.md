@@ -14,4 +14,4 @@ suggestions for improvement, I'm all ears. Thanks for reading this far, ily.
 
 
 
-#GIF walkthrouh coming soon
+#TODO: GIF walkthrough
