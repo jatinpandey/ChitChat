@@ -16,4 +16,4 @@ suggestions for improvement, I'm all ears. Thanks for reading this far, ily.
 
 GIF walkthrough:
 
-[[https://github.com/jatinpandey/chitchat/blob/master/ChitChat/Chitchat.gif]]
+![GIF walkthrough](Chitchat.gif)
