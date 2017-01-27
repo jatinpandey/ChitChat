@@ -14,4 +14,6 @@ suggestions for improvement, I'm all ears. Thanks for reading this far, ily.
 
 
 
-#TODO: GIF walkthrough
+GIF walkthrough:
+
+[[https://github.com/jatinpandey/chitchat/blob/master/ChitChat/Chitchat.gif]]
